@@ -1,0 +1,8 @@
+export const APP_CONSTS = {
+  STRING_HOME_SCREEN: ' Home Screen',
+  STRING_POINTS_SCREEN: ' Points Screen',
+  STRING_POINTS: 'Points',
+  STRING_CURRENT_POINTS: 'Current Points',
+  VALUE_WINNING_POINTS: 100,
+  VALUE_LOOSING_POINTS: 50,
+};
