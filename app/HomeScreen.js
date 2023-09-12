@@ -18,10 +18,7 @@ const HomeScreen = ({navigation}) => {
   const handleLose = () => {
     if (points === 0) {
       dispatch(reset());
-      Toast.show(
-        'You cannot lose more points. You already have 0 points.',
-        Toast.LONG,
-      );
+      Toast.show(APP_CONSTS.STRING_NO_POINTS_ERROR_MESSAGE, Toast.LONG);
     } else {
       dispatch(lose());
       navigation.navigate('Points');
@@ -38,12 +35,18 @@ const HomeScreen = ({navigation}) => {
       </View> */}
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
-          style={[styles.button, {backgroundColor: '#ff9800'}]}
+          style={[
+            styles.button,
+            {backgroundColor: APP_CONSTS.VALUE_COLOR_PRIMARY},
+          ]}
           onPress={handleWin}>
           <Text style={styles.buttonText}>Win</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.button, {backgroundColor: '#333333'}]}
+          style={[
+            styles.button,
+            {backgroundColor: APP_CONSTS.VALUE_COLOR_SECONDARY},
+          ]}
           onPress={handleLose}>
           <Text style={styles.buttonText}>Lose</Text>
         </TouchableOpacity>
