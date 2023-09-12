@@ -1,3 +1,4 @@
+//HomeScreen Component: To display two buttons which redirect to Points Screen.
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -10,29 +11,31 @@ const HomeScreen = ({navigation}) => {
   const points = useSelector(state => state.points.points);
   const dispatch = useDispatch();
 
+  // Function to handle the "Win" button press
   const handleWin = () => {
     dispatch(win());
-    navigation.navigate('Points');
+    navigation.push('Home');
   };
 
+  // Function to handle the "Lose" button press
   const handleLose = () => {
     if (points === 0) {
       dispatch(reset());
       Toast.show(APP_CONSTS.STRING_NO_POINTS_ERROR_MESSAGE, Toast.LONG);
     } else {
       dispatch(lose());
-      navigation.navigate('Points');
+      navigation.pop();
     }
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{APP_CONSTS.STRING_HOME_SCREEN}</Text>
-      {/* <View style={styles.pointsContainer}>
+      <View style={styles.pointsContainer}>
         <Text style={styles.pointsText}>
           {APP_CONSTS.STRING_POINTS}: {points}
         </Text>
-      </View> */}
+      </View>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
           style={[

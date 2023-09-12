@@ -5,7 +5,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Provider} from 'react-redux';
 import store from './app/redux/store';
 import HomeScreen from './app/HomeScreen';
-import PointsScreen from './app/PointsScreen';
 
 const Stack = createStackNavigator();
 
@@ -14,7 +13,7 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Game"
+          initialRouteName="Home"
           screenOptions={{
             headerStyle: {
               backgroundColor: '#333333',
@@ -23,16 +22,12 @@ const App = () => {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
+            headerLeft: () => null,
           }}>
           <Stack.Screen
             name="Home"
             component={HomeScreen}
             options={{title: 'Home'}}
-          />
-          <Stack.Screen
-            name="Points"
-            component={PointsScreen}
-            options={{title: 'Points'}}
           />
         </Stack.Navigator>
       </NavigationContainer>
