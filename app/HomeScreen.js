@@ -3,12 +3,14 @@ import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Toast from 'react-native-simple-toast';
+import {useNavigationState} from '@react-navigation/native';
 
 import {win, lose, reset} from './redux/slices/pointsSlice';
 import {APP_CONSTS} from './constants';
 
 const HomeScreen = ({navigation}) => {
   const points = useSelector(state => state.points.points);
+  const routesLength = useNavigationState(state => state.routes.length);
   const dispatch = useDispatch();
 
   // Function to handle the "Win" button press
@@ -23,8 +25,10 @@ const HomeScreen = ({navigation}) => {
       dispatch(reset());
       Toast.show(APP_CONSTS.STRING_NO_POINTS_ERROR_MESSAGE, Toast.LONG);
     } else {
-      dispatch(lose());
-      navigation.pop();
+      if (routesLength > 1) {
+        dispatch(lose());
+        navigation.pop();
+      }
     }
   };
 
